@@ -1,8 +1,9 @@
 package br.com.caiolobo.vendas.online.errorhandling;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Data;
+
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -12,9 +13,11 @@ public class ApiValidationError extends ApiSubError{
 	private String field;
 	private Object rejectedValue;
 	private String message;
+
 	
 	ApiValidationError(String object, String message) {
-	    this.object = object;
-	    this.message = message;
+	    this.setObject(object);
+	    this.setMessage(message);
 	}
+
 }

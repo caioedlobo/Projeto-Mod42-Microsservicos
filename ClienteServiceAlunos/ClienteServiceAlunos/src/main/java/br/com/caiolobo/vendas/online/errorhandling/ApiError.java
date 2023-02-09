@@ -10,9 +10,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class ApiError {
 	private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
@@ -97,4 +100,6 @@ public class ApiError {
     public void addValidationErrors(Set<ConstraintViolation<?>> constraintViolations) {
         constraintViolations.forEach(this::addValidationError);
     }
+
+
 }

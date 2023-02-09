@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.caiolobo.vendas.online.domain.Cliente;
+import br.com.caiolobo.vendas.online.exception.EntityNotFoundException;
 import br.com.caiolobo.vendas.online.repository.IClienteRepository;
 
 @Service
@@ -35,7 +36,7 @@ public class BuscaCliente {
 	}
 	
 	public Cliente buscarPorCpf(Long cpf) {
-		return clienteRepository.findByCpf(cpf).orElseThrow(() -> EntityNotFoundException(Cliente.class, "cpf", String.valueOf(cpf)));
+		return clienteRepository.findByCpf(cpf).orElseThrow(() -> new EntityNotFoundException(Cliente.class, "cpf", String.valueOf(cpf)));
 	}
 
 }

@@ -1,9 +1,12 @@
 package br.com.caiolobo.vendas.online.usecase;
 
+import org.springframework.stereotype.Service;
+
 import br.com.caiolobo.vendas.online.domain.Cliente;
 import br.com.caiolobo.vendas.online.repository.IClienteRepository;
 import jakarta.validation.Valid;
 
+@Service
 public class CadastroCliente {
 	
 	private IClienteRepository clienteRepository;

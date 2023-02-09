@@ -33,14 +33,46 @@ public class ClienteResource {
 	}
 	
 	@GetMapping
+	@Operation(summary = "Busca clientes")
 	public ResponseEntity<Page<Cliente>> buscar(Pageable pageable){
 		return ResponseEntity.ok(buscaCliente.buscar(pageable));
 	}
 	
 	@PostMapping
+	@Operation(summary = "Cadastra um cliente")
 	public ResponseEntity<Cliente> cadastrar(@RequestBody @Valid Cliente cliente){
 		return ResponseEntity.ok(cadastroCliente.cadastrar(cliente));
-		
+	}
+	
+	@GetMapping(value = "/{id}")
+	@Operation(summary = "Busca um cliente pelo id")
+	public ResponseEntity<Cliente> buscarPorId(@PathVariable(value = "id", required = true) String id) {
+		return ResponseEntity.ok(buscaCliente.buscarPorId(id));
+	}
+	
+	@GetMapping(value = "isCadastrado/{id}")
+	@Operation(summary = "Verifica se um cliente está cadastrado pelo id")
+	public ResponseEntity<Boolean> isCadastrado(@PathVariable(value = "id", required = true) String id) {
+		return ResponseEntity.ok(buscaCliente.isCadastrado(id));
+	}
+	
+	@GetMapping(value = "/cpf/{cpf}")
+	@Operation(summary = "Busca um cliente pelo cpf")
+	public ResponseEntity<Cliente> buscarPorCpf(@PathVariable(value = "cpf", required = true) Long cpf) {
+		return ResponseEntity.ok(buscaCliente.buscarPorCpf(cpf));
+	}
+	
+	@PutMapping
+	@Operation(summary = "Atualiza um cliente")
+	public ResponseEntity<Cliente> atualizar(@RequestBody @Valid Cliente cliente) {
+		return ResponseEntity.ok(cadastroCliente.atualizar(cliente));
+	}	
+	
+	@DeleteMapping(value = "/{id}")
+	@Operation(summary = "Remove um cliente pelo seu identificador único")
+	public ResponseEntity<String> remover(@PathVariable(value = "id") String id) {
+		cadastroCliente.remover(id);
+		return ResponseEntity.ok("Removido com sucesso");
 	}
 
 }
